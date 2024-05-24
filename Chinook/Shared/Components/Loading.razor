@@ -1,4 +1,7 @@
-﻿<div class="d-flex align-items-center">
+﻿@using Chinook.Shared.Components.BaseClasses
+@inherits LoadingBase
+
+<div class="d-flex align-items-center">
     <div class="spinner-border spinner-border-sm"></div>
     @if (Message == null)
     {
@@ -6,7 +9,3 @@
     }
     <span class="m-2">@Message</span>
 </div>
-
-@code {
-    [Parameter] public string Message { get; set; }
-}

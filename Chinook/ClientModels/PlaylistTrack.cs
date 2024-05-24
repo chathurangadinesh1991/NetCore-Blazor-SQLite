@@ -7,5 +7,4 @@ public class PlaylistTrack
     public string AlbumTitle { get; set; }
     public string ArtistName { get; set; }
     public bool IsFavorite { get; set; }
-
 }

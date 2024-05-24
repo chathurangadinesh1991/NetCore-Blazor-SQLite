@@ -1,8 +1,12 @@
 using Chinook;
 using Chinook.Areas.Identity;
+using Chinook.Interfaces;
 using Chinook.Models;
+using Chinook.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.EntityFrameworkCore;
+using NLog.Extensions.Logging;
+using NLog.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +20,16 @@ builder.Services.AddDefaultIdentity<ChinookUser>(options => options.SignIn.Requi
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
+builder.Logging.ClearProviders();
+builder.Logging.SetMinimumLevel(LogLevel.Trace);
+builder.Host.UseNLog();
+
+builder.Services.AddSingleton<ILoggerProvider, NLogLoggerProvider>();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<ChinookUser>>();
+builder.Services.AddScoped<ITrackService, TrackService>();
+builder.Services.AddScoped<IArtistService, ArtistService>();
+builder.Services.AddScoped<IPlayListService, PlayListService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

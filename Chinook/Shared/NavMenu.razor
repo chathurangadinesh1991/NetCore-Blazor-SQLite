@@ -1,4 +1,7 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@inherits NavMenuBase
+@using Chinook.Shared.BaseClasses
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Chinook</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -14,24 +17,18 @@
                 <span class="oi oi-home" aria-hidden="true"></span>Home
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-@* 
-            <NavLink class="nav-link" href="playlist/playlistnumber">
-                <i class="bi bi-music-note-list me-3" style="font-size: 1.25em"></i>My favorite tracks
-            </NavLink>
-*@
-</div>
-
+        <div class="nav-item px-3" style="overflow-y: scroll;height: 80vh">
+            @if (UserPlaylist != null)
+            {
+                @foreach (var userPl in UserPlaylist)
+                {
+                    <NavLink class="nav-link" href="@{
+                "playlist/" + @userPl.PlaylistId
+            }">
+                        <i class="bi bi-music-note-list me-3" style="font-size: 1.25em"></i>@userPl.Name
+                    </NavLink>
+                }
+            }
+        </div>
     </nav>
 </div>
-
-@code {
-    private bool collapseNavMenu = true;
-
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-}

@@ -1,0 +1,12 @@
+﻿@using Chinook.Shared.Components.BaseClasses
+@inherits SearchArtistBase
+
+<div class="input-group">
+    <input 
+        @bind-value="@SearchTerm"
+        type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+    <button 
+        @onclick="@SearchArtists"
+        disabled="@IsDisabled"
+        type="button" class="btn btn-outline-primary" data-mdb-ripple-init>Search</button>
+</div>
