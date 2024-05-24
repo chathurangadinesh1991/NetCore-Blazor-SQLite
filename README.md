@@ -1,18 +1,24 @@
 # Chinook
 
-This application is unfinished. Please complete below tasks. Spend max 2 hours.
-We would like to have a short written explanation of the changes you made.
+1.	Move data retrieval methods to separate class / classes (use dependency injection)
+=>	Moved methods to different base classes
+	
+2.	Favorite / unfavorite tracks. An automatic playlist should be created named "My favorite tracks"
+=>	This feature has been implemented.
 
-1. Move data retrieval methods to separate class / classes (use dependency injection)
-2. Favorite / unfavorite tracks. An automatic playlist should be created named "My favorite tracks"
-3. Search for artist name
+3.	Search for artist name
+=>	Separate component called "SearchArtist" was made. Data is passed to other components via EventCallback.
 
-Optional:
-4. The user's playlists should be listed in the left navbar. If a playlist is added (or modified), this should reflect in the left navbar (NavMenu.razor). Preferrably, this list should be refreshed without a full page reload. (suggestion: you can use Event, Reactive.NET, SectionOutlet, or any other method you prefer)
-5. Add tracks to a playlist (existing or new one). The dialog is already created but not yet finished.
+4.	The user's playlists should be listed in the left navbar. If a playlist is added (or modified), this should reflect in the left navbar (NavMenu.razor). Preferrably, this list should be refreshed without a full page reload. (suggestion: you can use Event, 	Reactive.NET, SectionOutlet, or any other method you prefer)
+=>	It was done using CascadingParameter. To maintain the state details, a separate class called "ApplicationStateChange" was created.
 
-When creating a user account, you will see this:
-"This app does not currently have a real email sender registered, see these docs for how to configure a real email sender. Normally this would be emailed: Click here to confirm your account."
-After you click 'Click here to confirm your account' you should be able to login.
+5.	Add tracks to a playlist (existing or new one). The dialog is already created but not yet finished.
+=>	This feature has been implemented.
 
-Please send us a zip file with the modified solution when you are done. You can also upload it to your own GitHub account and send us the link.
+6.  Exception handling should be implemented.
+=>  Exception handling has been implemented at the page level.Null exceptions are also handled at the same level.
+
+7.  Error handling
+=>  Utilised NLog as a source for logging
+
+I just followed only those point was mentioned. There was no change made to the application's architecture (CLEAN artcure, CQRS, etc.). I did not use any service layer in order to maintain data retries. Just added those methods to the base classes and service classes.
